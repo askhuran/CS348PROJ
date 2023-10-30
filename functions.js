@@ -15,23 +15,72 @@ function mainSelect() {
 }
 
 function checkStudent() {
-    console.log("here")
     var id = document.getElementById("studentId").value
     var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/function-1?studentId=" + id
-    
-    fetch(functionURL)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    console.log(response.text());
-                })
-                .then((data) => {
-                    responseContainer.innerHTML = `Response from Cloud Function: ${data}`;
-                })
-                .catch((error) => {
-                    responseContainer.innerHTML = `Fetch error: ${error}`;
-                });
 
+    fetch(functionURL, {method: "GET", mode: 'cors'})
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.length == 0) {
+                        alert("Student does not exist");
+                        return;
+                    }
+                    else {
+                        window.location.href = 'add2.html';
+                        localStorage.setItem("studentId", data[0])
+                        return;
+                    }
+                        
+                });
+}
+
+
+function addDegree() {
+    if (document.getElementById("degChoice").value == "Data Science") {
+        var dId = 0
+    }
+    if (document.getElementById("degChoice").value == "Computer Science") {
+        var dId = 1
+    }
+    if (document.getElementById("degChoice").value == "Biochemistry") {
+        var dId = 2
+    }
+    if (document.getElementById("degChoice").value == "Biology") {
+        var dId = 3
+    }
+    if (document.getElementById("degChoice").value == "History") {
+        var dId = 4
+    }
+    if (document.getElementById("degChoice").value == "Gender Studies") {
+        var dId = 5
+    }
+    if (document.getElementById("degChoice").value == "English") {
+        var dId = 6
+    }
+    if (document.getElementById("degChoice").value == "Turf Management") {
+        var dId = 7
+    }
+    if (document.getElementById("degChoice").value == "Finance") {
+        var dId = 8
+    }
+    if (document.getElementById("degChoice").value == "Economics") {
+        var dId = 9
+    }
+
+
+
+    if (document.getElementById("conChoice").value == "AI") {
+        var cId = 0
+    }
+    if (document.getElementById("conChoice").value == "Statistics") {
+        var cId = 1
+    }
+    if (document.getElementById("conChoice").value == "Entrepreneurship") {
+        var cId = 2
+    }
+
+    var sId = localStorage.getItem("studentId")
+
+    
 
 }

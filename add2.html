@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Room selector</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+    <br>
+    Please select a degree to add:
+    <br>
+    <select name="Options" id="degChoice">
+        <option value="Blank"></option>
+        <option value="Data Science">Data Science</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Biochemistry">Biochemistry</option>
+        <option value="Biology">Biology</option>
+        <option value="History">History</option>
+        <option value="Gender Studies">Gender Studies</option>
+        <option value="English">English</option>
+        <option value="Turf Management">Turf Management</option>
+        <option value="Finance">Finance</option>
+        <option value="Economics">Economics</option>
+    </select>
+    <button type="button" class="btn btn-primary" onclick="mainSelect()">Select</button>
+    <br>
+    <br>
+    Please select a concentration to add:
+    <br>
+    <select name="Options" id="conChoice">
+        <option value="Blank"></option>
+        <option value="AI">AI</option>
+        <option value="Statistics">Statistics</option>
+        <option value="Entrepreneurship">Entrepreneurship</option>
+    </select>
+    <button type="button" class="btn btn-primary" onclick="mainSelect()">Select</button>
+</div>
+
+
+<script src="functions.js"></script>
+</body>
+
+</html>
