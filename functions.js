@@ -14,3 +14,8 @@ function mainSelect() {
     }
 }
 
+function checkStudent() {
+    var id = document.getElementById("studentId").value
+    var url = "https://us-central1-cs348proj-403523.cloudfunctions.net/function-1?studentId=" + id
+    
+}
