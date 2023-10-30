@@ -1,16 +1,20 @@
+import mysql.connector
+from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 def checkStudent(id):
-    studentId = request.args.get('studentId')
+    studentId = id.args.get('studentId')
+    studentId = id
+
     headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type',
     }
-    if request.method == 'OPTIONS':
-            return ('', 204, headers)
+    
 
     conn = mysql.connector.connect(host='34.71.92.26',
                                     user='root',
-                                    database='degrees')
+                                    database='Degrees')
     
     cursor = conn.cursor()
     
@@ -23,5 +27,5 @@ def checkStudent(id):
     # Close the cursor and connection.
     cursor.close()
     conn.close()
-    return (results, 200, headers)
-    ﻿
+    return (results)
+
