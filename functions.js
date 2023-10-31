@@ -14,7 +14,7 @@ function mainSelect() {
     }
 }
 
-function checkStudent() {
+function checkStudentAdd() {
     var id = document.getElementById("studentId").value
     var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/function-1?studentId=" + id
 
@@ -22,7 +22,7 @@ function checkStudent() {
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.length == 0) {
-                        alert("Student does not exist");
+                        alert("Student does not exist!");
                         return;
                     }
                     else {
@@ -30,6 +30,34 @@ function checkStudent() {
                         var data = data.split(",");
                         localStorage.setItem("studentId", data[0]);
                         window.location.href = 'add2.html';
+                        return;
+                    }
+                        
+                });
+}
+
+function checkStudentDelete() {
+    var id = document.getElementById("studentId").value
+    var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/function-1?studentId=" + id
+
+    fetch(functionURL, {method: "GET", mode: 'cors'})
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.length == 0) {
+                        alert("Student does not exist!");
+                        return;
+                    }
+                    else {
+                        data = JSON.stringify(data)
+                        var data = data.split(",");
+                        data[3] = data[3].replace(']]', '');
+                        data[4] = data[4].replace(']]', '');
+                        if ((data[3] == 'null') && (data[4] == 'null')) {
+                            alert("Entered student has no degree to delete!");
+                            return;
+                        }
+                        localStorage.setItem("studentId", data[0]);
+                        window.location.href = 'delete2.html';
                         return;
                     }
                         
