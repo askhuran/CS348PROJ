@@ -26,8 +26,10 @@ function checkStudent() {
                         return;
                     }
                     else {
+                        data = JSON.stringify(data)
+                        var data = data.split(",");
+                        localStorage.setItem("studentId", data[0]);
                         window.location.href = 'add2.html';
-                        localStorage.setItem("studentId", data[0])
                         return;
                     }
                         
@@ -80,7 +82,17 @@ function addDegree() {
     }
 
     var sId = localStorage.getItem("studentId")
+    sId = sId.replace(/\D+/g, '');
 
-    
+
+    var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/addDegree?sId=" + sId + "&dId=" + dId + "&cId=" + cId
+
+    fetch(functionURL, {method: "GET"})
+                .then((response) => response.json())
+                .then((data) => {
+                        alert("Congrats! You have added a degree!");
+                        window.location.href = 'index.html';
+                        return;
+                });
 
 }
