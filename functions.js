@@ -37,7 +37,7 @@ function checkStudentAdd() {
 }
 
 function checkStudentDelete() {
-    var id = document.getElementById("studentId").value
+    var id = document.getElementById("studentIdDel").value
     var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/function-1?studentId=" + id
 
     fetch(functionURL, {method: "GET", mode: 'cors'})
@@ -123,4 +123,21 @@ function addDegree() {
                         return;
                 });
 
+}
+
+function displayDelete() {
+    var id = localStorage.getItem("studentId")
+    id = id.replace(/\D+/g, '');
+
+    var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/function-1?studentId=" + id
+
+    fetch(functionURL, {method: "GET", mode: 'cors'})
+                .then((response) => response.json())
+                .then((data) => {
+                        data = JSON.stringify(data)
+                        var data = data.split(",");
+                        localStorage.setItem("degInfo", data);
+                        
+                        return;
+                });
 }

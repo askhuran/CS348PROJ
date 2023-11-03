@@ -12,7 +12,10 @@
     <br>
     Please enter your student ID to delete your degree:
     <br>
-        <input type="text" id="studentId" name="studentId">
+        <input type="text" id="studentIdDel" name="studentId">
+        <script>
+            localStorage.setItem('studentIdDel', document.getElementById('studentIdDel').value);
+        </script>
     <button type="button" class="btn btn-primary" onclick="checkStudentDelete();">Enter</button>
     <br>
     <input type="button" class="btn btn-lg btn-success" onclick="location.href='index.html';" value="Home" />
