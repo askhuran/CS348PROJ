@@ -16,4 +16,15 @@ CREATE PROCEDURE addDegree(sId int, dId int, cId int)
 		SET degreeId=dId, concentrationId=cId
 		WHERE studentId = sId;
 	END //
+    
+DROP PROCEDURE IF EXISTS deleteDegree;
+CREATE PROCEDURE deleteDegree(sId int)
+	BEGIN 
+		UPDATE Students
+		SET degreeId=null, concentrationId=null
+		WHERE studentId = sId;
+	END //
+    
+    
+
 DELIMITER ;

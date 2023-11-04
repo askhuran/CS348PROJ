@@ -125,7 +125,7 @@ function addDegree() {
 
 }
 
-function displayDelete() {
+document.addEventListener('DOMContentLoaded', function displayDelete() {
     var id = localStorage.getItem("studentId")
     id = id.replace(/\D+/g, '');
 
@@ -137,7 +137,23 @@ function displayDelete() {
                         data = JSON.stringify(data)
                         var data = data.split(",");
                         localStorage.setItem("degInfo", data);
-                        
+                        var degInfo = localStorage.getItem("degInfo");
+                        degInfo = degInfo.split(",")
+                        degInfo[0] = degInfo[0].replaceAll('[', '');
+                        degInfo[1] = degInfo[1].replaceAll('"', '');
+                        degInfo[2] = degInfo[2].replaceAll('"', '');
+                        degInfo[2] = degInfo[2].slice(0, -2);
+                        degInfo[3] = degInfo[3].replaceAll('"', '');
+                        degInfo[4] = degInfo[4].replaceAll('"', '');
+                        degInfo[4] = degInfo[4].replaceAll(']', '');
+
+                        var table = document.getElementById("myTable");
+                        var row = table.insertRow(1);
+
+                        for (var i = 0; i < degInfo.length; i++) {
+                            var cell = row.insertCell(i);
+                            cell.innerHTML = degInfo[i];
+                        }
                         return;
                 });
-}
+});
