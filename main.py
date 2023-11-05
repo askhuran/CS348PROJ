@@ -55,3 +55,29 @@ def addDegree(Ids):
     response.headers.add('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
     return response
+
+
+
+
+def deleteDegree(id):
+    Id = id.args.get('Id')
+    
+    conn = mysql.connector.connect(host='34.71.92.26',
+                                    user='root',
+                                    database='Degrees')
+    
+    cursor = conn.cursor()
+    
+    cursor.callproc('deleteDegree', (Id,))
+
+    # Close the cursor and connection.
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    response = jsonify("success")
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    return response
+

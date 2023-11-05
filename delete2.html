@@ -16,19 +16,62 @@
         </font>
     </center>
 
-        <font face="Courier New" size="2"><table id="myTable" align="center" border="1" width="100%">
-            <tr>
-                <td style="padding-right: 10px">student_id</td>
-                <td style="padding-right: 10px">first_name</td>
-                <td style="padding-right: 10px">last_name</td>
-                <td style="padding-right: 10px">degree_id</td>
-                <td style="padding-right: 10px">concentration_id</td>
-              </tr>
-        </table></font>
 
-        <script src="functions.js">
-            displayDelete();
-        </script>
+    <script language='javascript'>
+        function displayDelete() {
+            var id = localStorage.getItem("studentId")
+            id = id.replace(/\D+/g, '');
+
+            var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/function-1?studentId=" + id
+
+            fetch(functionURL, {method: "GET", mode: 'cors'})
+                .then((response) => response.json())
+                .then((data) => {
+                        data = JSON.stringify(data)
+                        var data = data.split(",");
+                        localStorage.setItem("degInfo", data);
+                        var degInfo = localStorage.getItem("degInfo");
+                        degInfo = degInfo.split(",")
+                        degInfo[0] = degInfo[0].replaceAll('[', '');
+                        degInfo[1] = degInfo[1].replaceAll('"', '');
+                        degInfo[2] = degInfo[2].replaceAll('"', '');
+                        degInfo[2] = degInfo[2].slice(0, -2);
+                        degInfo[3] = degInfo[3].replaceAll('"', '');
+                        degInfo[4] = degInfo[4].replaceAll('"', '');
+                        degInfo[4] = degInfo[4].replaceAll(']', '');
+
+                        var table = document.getElementById("myTable");
+                        var row = table.insertRow(1);
+
+                        for (var i = 0; i < degInfo.length; i++) {
+                            var cell = row.insertCell(i);
+                            cell.innerHTML = degInfo[i];
+                        }
+
+                        localStorage.setItem("degInfo", degInfo);
+
+                        return;
+                });
+            }
+    </script>
+
+    <font face="Courier New" size="2"><table id="myTable" align="center" border="1" width="100%">
+        <tr>
+            <td style="padding-right: 10px">student_id</th>
+            <td style="padding-right: 10px">first_name</th>
+            <td style="padding-right: 10px">last_name</tdh>
+            <td style="padding-right: 10px">degree_id</th>
+            <td style="padding-right: 10px">concentration_id</th>
+        </tr>
+    </table></font>
+
+    <script>
+    //call after page loaded
+    window.onload=displayDelete(); 
+    </script>
+
+    <button type="button" class="btn btn-primary" onclick="deleteDegree();">Delete</button>
+    <input type="button" class="btn btn-primary" onclick="location.href='delete.html';" value="Cancel" />
 
     </body>
     

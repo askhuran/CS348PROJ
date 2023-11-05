@@ -125,35 +125,20 @@ function addDegree() {
 
 }
 
-document.addEventListener('DOMContentLoaded', function displayDelete() {
-    var id = localStorage.getItem("studentId")
-    id = id.replace(/\D+/g, '');
 
-    var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/function-1?studentId=" + id
+
+
+
+function deleteDegree() {
+    var id = localStorage.getItem("degInfo");
+    id = id[0]
+    var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/function-2?Id=" + id
 
     fetch(functionURL, {method: "GET", mode: 'cors'})
                 .then((response) => response.json())
-                .then((data) => {
-                        data = JSON.stringify(data)
-                        var data = data.split(",");
-                        localStorage.setItem("degInfo", data);
-                        var degInfo = localStorage.getItem("degInfo");
-                        degInfo = degInfo.split(",")
-                        degInfo[0] = degInfo[0].replaceAll('[', '');
-                        degInfo[1] = degInfo[1].replaceAll('"', '');
-                        degInfo[2] = degInfo[2].replaceAll('"', '');
-                        degInfo[2] = degInfo[2].slice(0, -2);
-                        degInfo[3] = degInfo[3].replaceAll('"', '');
-                        degInfo[4] = degInfo[4].replaceAll('"', '');
-                        degInfo[4] = degInfo[4].replaceAll(']', '');
-
-                        var table = document.getElementById("myTable");
-                        var row = table.insertRow(1);
-
-                        for (var i = 0; i < degInfo.length; i++) {
-                            var cell = row.insertCell(i);
-                            cell.innerHTML = degInfo[i];
-                        }
-                        return;
+                .then((data) => {  
                 });
-});
+                alert("Degree successfully deleted!");
+                window.location.href = 'index.html';
+                return;
+}
