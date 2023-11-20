@@ -144,18 +144,27 @@ function deleteDegree() {
 }
 
 
-function mainSelect() {
+function storeDept() {
     
-    if (document.getElementById("Choices").value == "Edit") {
-        window.location.href = 'edit.html';
+    if (document.getElementById("departments").value == "Science") {
+        localStorage.setItem("department", "Science");
         return;
     }
-    if (document.getElementById("Choices").value == "Add") {
-        window.location.href = 'add.html';
+    if (document.getElementById("departments").value == "Liberal Arts") {
+        localStorage.setItem("department", "Liberal Arts");
         return;
     }
-    if (document.getElementById("Choices").value == "Delete") {
-        window.location.href = 'delete.html';
+    if (document.getElementById("departments").value == "Agriculture") {
+        localStorage.setItem("department", "Agriculture");
         return;
     }
+    if (document.getElementById("departments").value == "Business") {
+        localStorage.setItem("department", "Business");
+        return;
+    }
+}
+
+
+function displayDegrees() {
+    var dept = localStorage.getItem("department");
 }
