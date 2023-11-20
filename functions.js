@@ -130,8 +130,8 @@ function addDegree() {
 
 
 function deleteDegree() {
-    var id = localStorage.getItem("degInfo");
-    id = id[0]
+    var id = localStorage.getItem("studentId");
+    id = id.replace(/\D+/g, '');
     var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/function-2?Id=" + id
 
     fetch(functionURL, {method: "GET", mode: 'cors'})
@@ -141,4 +141,21 @@ function deleteDegree() {
                 alert("Degree successfully deleted!");
                 window.location.href = 'index.html';
                 return;
+}
+
+
+function mainSelect() {
+    
+    if (document.getElementById("Choices").value == "Edit") {
+        window.location.href = 'edit.html';
+        return;
+    }
+    if (document.getElementById("Choices").value == "Add") {
+        window.location.href = 'add.html';
+        return;
+    }
+    if (document.getElementById("Choices").value == "Delete") {
+        window.location.href = 'delete.html';
+        return;
+    }
 }

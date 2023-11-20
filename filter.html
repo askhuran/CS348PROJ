@@ -10,17 +10,20 @@
 <body>
 <div class="container">
     <br>
-    Please enter your student ID to add a degree:
+    Please select a department to filter by:
     <br>
-        <input type="text" id="studentId" name="studentId">
+        <select name="Options" id="departments">
+            <option value="Blank"></option>
+            <option value="Science">Science</option>
+            <option value="Liberal Arts">Liberal Arts</option>
+            <option value="Agriculture">Agriculture</option>
+            <option value="Business">Business</option>
+        </select>
     <button type="button" class="btn btn-primary" onclick="checkStudentAdd()">Enter</button>
     <br>
-    <input type="button" class="btn btn-lg btn-success" onclick="location.href='index.html';" value="Home" />
-    <input type="button" class="btn btn-lg btn-success" onclick="location.href='filter.html';" value="Filter Degrees by Department" />
+    <input type="button" class="btn btn-lg btn-success" onclick="location.href='add.html';" value="Back" />
 </div>
 
 
 <script src="functions.js"></script>
 </body>
-
-</html>
