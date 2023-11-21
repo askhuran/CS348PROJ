@@ -147,24 +147,25 @@ function deleteDegree() {
 function storeDept() {
     
     if (document.getElementById("departments").value == "Science") {
-        localStorage.setItem("department", "Science");
-        return;
+        var dept = "Science"
     }
     if (document.getElementById("departments").value == "Liberal Arts") {
-        localStorage.setItem("department", "Liberal Arts");
-        return;
+        var dept = "Liberal Arts"
     }
     if (document.getElementById("departments").value == "Agriculture") {
-        localStorage.setItem("department", "Agriculture");
-        return;
+        var dept = "Agriculture"
     }
     if (document.getElementById("departments").value == "Business") {
-        localStorage.setItem("department", "Business");
-        return;
+        var dept = "Business"
     }
-}
+    
+    var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/displayDegrees?=" + dept
 
-
-function displayDegrees() {
-    var dept = localStorage.getItem("department");
+    fetch(functionURL, {method: "GET", mode: 'cors'})
+                .then((response) => response.json())
+                .then((data) => {
+                    data = JSON.stringify(data)
+                    console.log(data)
+                    return;    
+                });
 }
