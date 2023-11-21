@@ -159,13 +159,49 @@ function storeDept() {
         var dept = "Business"
     }
     
-    var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/displayDegrees?=" + dept
+    var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/displayDegrees?dept=" + dept
 
     fetch(functionURL, {method: "GET", mode: 'cors'})
                 .then((response) => response.json())
                 .then((data) => {
                     data = JSON.stringify(data)
-                    console.log(data)
+                    const tableHtml = createTable(data);
+                    document.getElementById("tableDiv").innerHTML = tableHtml;
                     return;    
                 });
+}
+
+function createTable(data) {
+    // Parse the JSON string to an array
+    const records = JSON.parse(data);
+
+    let tableHtml = `<table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Program Name</th>
+                                <th>Department</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+    // Check for data
+    if (records.length) {
+        // Loop through array
+        records.forEach(record => {
+            tableHtml += `<tr>`;
+            // Loop through inner array
+            record.forEach(value => {
+                tableHtml += `<td>${value}</td>`;
+            });
+            tableHtml += `</tr>`;
+        });
+    } else {
+        // Show no data message
+        tableHtml += `<tr><td colspan="3">No data available</td></tr>`;
+    }
+
+    tableHtml += `</tbody></table>`;
+
+    return tableHtml;
 }
