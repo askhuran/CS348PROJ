@@ -209,6 +209,8 @@ function createTable(data) {
 
 function checkStudentEdit() {
     var id = document.getElementById("studentIdEd").value
+    localStorage.setItem("studentIdEd", id);
+    console.log(localStorage.getItem("studentIdEd"));
     var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/function-1?studentId=" + id
 
     fetch(functionURL, {method: "GET", mode: 'cors'})
@@ -232,5 +234,23 @@ function checkStudentEdit() {
                         return;
                     }
                         
+                });
+}
+
+
+
+function editDegree() {
+    var cid = document.getElementById("editChoices").value
+    var sid = localStorage.getItem("studentIdEd")
+   
+
+    var functionURL = "https://us-central1-cs348proj-403523.cloudfunctions.net/editDegree?conId=" + cid + "&sId=" + sid 
+
+    fetch(functionURL, {method: "GET", mode: 'cors'})
+                .then((response) => response.json())
+                .then((data) => {
+                    alert("Degree successfully edited!");
+                    window.location.href = 'index.html';
+                    return;
                 });
 }

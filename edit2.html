@@ -53,6 +53,8 @@
                         return;
                 });
             }
+
+
     </script>
 
     <font face="Courier New" size="2"><table id="myTable" align="center" border="1" width="100%">
@@ -67,12 +69,22 @@
 
     <script>
     //call after page loaded
-    window.onload=displayDelete(); 
+    window.onload=displayEdit(); 
     </script>
 
-    <button type="button" class="btn btn-primary" onclick="deleteDegree();">Delete</button>
-    <input type="button" class="btn btn-primary" onclick="location.href='delete.html';" value="Cancel" />
+    <input type="button" class="btn btn-primary" onclick="location.href='edit.html';" value="Cancel" />
 
+    <br>
+    <br>
+    Please select a new conentration:
+    <select name="Options" id="editChoices">
+        <option value="Blank"></option>
+        <option value="0">AI</option>
+        <option value="1">Statistics</option>
+        <option value="2">Entrepreneurship</option>
+        
+    </select>
+    <button type="button" class="btn btn-primary" onclick="editDegree()">Submit</button>
     </body>
     
 </div>
