@@ -9,20 +9,18 @@
 
 <body>
 <div class="container">
-    
     <br>
-    Please enter your student information to edit your class listings?
+    Please enter your student ID to edit your degree:
     <br>
-        <select name="Options" id="Choices">
-            <option value="Blank"> </option>
-            <option value="Add">Add</option>
-            <option value="Delete">Edit</option>
-            <option value="Edit">Delete</option>
-        </select>
-    <button type="button" class="btn btn-primary" onclick="myFunction()">Submit</button>
+        <input type="text" id="studentIdEd" name="studentId">
+        <script>
+            localStorage.setItem('studentIdEd', document.getElementById('studentIdEd').value);
+        </script>
+    <button type="button" class="btn btn-primary" onclick="checkStudentEdit();">Enter</button>
     <br>
     <input type="button" class="btn btn-lg btn-success" onclick="location.href='index.html';" value="Home" />
 </div>
+
 
 <script src="functions.js"></script>
 </body>
